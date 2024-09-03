@@ -1,3 +1,10 @@
+# [3.56.0](https://github.com/T0ruKun/Next-js-Boilerplate/compare/v3.55.3...v3.56.0) (2024-09-03)
+
+
+### Features
+
+* update layout for home page ([56ab3f5](https://github.com/T0ruKun/Next-js-Boilerplate/commit/56ab3f5a94c2f3926af2c82f5e0afa7804da1a81))
+
 ## [3.55.3](https://github.com/ixartz/Next-js-Boilerplate/compare/v3.55.2...v3.55.3) (2024-08-21)
 
 

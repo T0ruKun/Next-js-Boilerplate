@@ -7,32 +7,36 @@ import { BaseTemplate } from './BaseTemplate';
 
 describe('Base template', () => {
   describe('Render method', () => {
-    it('should have 3 menu items', () => {
+    it('should have nav and sidenav', () => {
       render(
         <NextIntlClientProvider locale="en" messages={messages}>
           <BaseTemplate
-            leftNav={(
-              <>
-                <li>link 1</li>
-                <li>link 2</li>
-                <li>link 3</li>
-              </>
-            )}
+            Nav={<nav>Nav Content</nav>}
+            SideNav={<aside>SideNav Content</aside>}
           >
-            {null}
+            <div>Main Content</div>
           </BaseTemplate>
         </NextIntlClientProvider>,
       );
 
-      const menuItemList = screen.getAllByRole('listitem');
+      const nav = screen.getByText('Nav Content');
+      const sideNav = screen.getByText('SideNav Content');
+      const mainContent = screen.getByText('Main Content');
 
-      expect(menuItemList).toHaveLength(3);
+      expect(nav).toBeInTheDocument();
+      expect(sideNav).toBeInTheDocument();
+      expect(mainContent).toBeInTheDocument();
     });
 
     it('should have a link to support creativedesignsguru.com', () => {
       render(
         <NextIntlClientProvider locale="en" messages={messages}>
-          <BaseTemplate leftNav={<li>1</li>}>{null}</BaseTemplate>
+          <BaseTemplate
+            Nav={<nav>Nav Content</nav>}
+            SideNav={<aside>SideNav Content</aside>}
+          >
+            <div>Main Content</div>
+          </BaseTemplate>
         </NextIntlClientProvider>,
       );
 

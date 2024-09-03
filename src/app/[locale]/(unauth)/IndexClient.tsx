@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 
-import { scrapeAndStoreContent } from '@/libs/scraper/pantip';
 import type { Content } from '@/Store/contentSlice';
 import { addItems, setLoading } from '@/Store/contentSlice';
 import { useAppDispatch, useAppSelector } from '@/Store/hook';
@@ -43,19 +42,14 @@ export default function IndexClient() {
   const loadMoreItems = useCallback(async () => {
     dispatch(setLoading(true));
     try {
-      const pantipUrl = `https://pantip.com/`;
-      const scrapedContent = await scrapeAndStoreContent(pantipUrl);
+      const response = await fetch('/api');
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      const scrapedContent: Content[] = await response.json();
 
       if (scrapedContent && scrapedContent.length > 0) {
-        const formattedContent: Content[] = scrapedContent.map(item => ({
-          id: item.id || Date.now() + Math.random(),
-          title: item.title,
-          link: item.link,
-          author: item.author,
-          tags: item.tags,
-          updatedAt: item.updatedAt,
-        }));
-        dispatch(addItems(formattedContent));
+        dispatch(addItems(scrapedContent));
         pageRef.current += 1;
       }
     } catch (error) {
@@ -92,7 +86,7 @@ export default function IndexClient() {
     <div className="container mx-auto mt-10">
       <h1 className="mb-4 text-2xl font-bold">Infinite Pantip Contents</h1>
       {items.map((item, index) => (
-        <div key={item.id} ref={index === items.length - 1 ? lastElementRef : null}>
+        <div key={item.id || index} ref={index === items.length - 1 ? lastElementRef : null}>
           <ContentBlock content={item} />
         </div>
       ))}

@@ -55,49 +55,49 @@ export default function ClientSideNav() {
       <div className="mt-5">
         <ul className="w-full space-y-2 shadow-md">
           <li className="flex flex-col">
-            <a href="/" className="flex size-full px-4 hover:underline ">
+            <Link href="/" className="flex size-full px-4 hover:underline ">
               <span className="my-auto">กฎ กติกาและมารยาท</span>
-            </a>
+            </Link>
           </li>
           <li className="flex flex-col">
-            <a href="/" className="flex px-4 hover:underline">
+            <Link href="/" className="flex px-4 hover:underline">
               <span className="my-auto">คำแนะนำการโพสต์</span>
-            </a>
+            </Link>
           </li>
           <li className="flex flex-col">
-            <a href="/" className="flex px-4 hover:underline">
+            <Link href="/" className="flex px-4 hover:underline">
               <span className="my-auto">นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</span>
-            </a>
+            </Link>
           </li>
           <li className="flex flex-col">
-            <a href="/" className="flex px-4 hover:underline">
+            <Link href="/" className="flex px-4 hover:underline">
               <span className="my-auto">สิทธิ์การใช้งานของสมาชิก</span>
-            </a>
+            </Link>
           </li>
           <li className="flex flex-col">
-            <a href="/" className="flex px-4 hover:underline">
+            <Link href="/" className="flex px-4 hover:underline">
               <span className="my-auto">ติดต่อทีมงาน Pantip</span>
-            </a>
+            </Link>
           </li>
           <li className="flex flex-col">
-            <a href="/" className="flex px-4 hover:underline">
+            <Link href="/" className="flex px-4 hover:underline">
               <span className="my-auto">ติดต่อลงโฆษณา</span>
-            </a>
+            </Link>
           </li>
           <li className="flex flex-col">
-            <a href="/" className="flex px-4 hover:underline">
+            <Link href="/" className="flex px-4 hover:underline">
               <span className="my-auto">ร่วมงานกับ Pantip</span>
-            </a>
+            </Link>
           </li>
           <li className="flex flex-col">
-            <a href="/" className="flex px-4 hover:underline">
+            <Link href="/" className="flex px-4 hover:underline">
               <span className="my-auto">Download App Pantip</span>
-            </a>
+            </Link>
           </li>
           <li className="flex flex-col">
-            <a href="/" className="flex px-4 hover:underline">
+            <Link href="/" className="flex px-4 hover:underline">
               <span className="my-auto">Pantip Certified Developer</span>
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

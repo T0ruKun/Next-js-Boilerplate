@@ -1,80 +1,102 @@
 'use client';
 
+import { useCallback, useEffect, useRef } from 'react';
+
+import { scrapeAndStoreContent } from '@/libs/scraper/pantip';
+import type { Content } from '@/Store/contentSlice';
+import { addItems, setLoading } from '@/Store/contentSlice';
+import { useAppDispatch, useAppSelector } from '@/Store/hook';
+
+const ContentBlock = ({ content }: { content: Content }) => (
+  <div className="m-2 rounded bg-gray-100 p-4">
+    <h2 className="text-wrap text-sm font-bold md:text-lg">{content.title}</h2>
+    <a href={content.link} className="text-wrap text-sm text-blue-500 underline md:text-lg">
+      {content.link}
+    </a>
+    <p className="text-sm text-gray-500">
+      By
+      {content.author}
+    </p>
+    <p className="text-xs text-gray-400">
+      Updated at
+      {content.updatedAt}
+    </p>
+    <div className="mt-2">
+      {content.tags.map((tag, index) => (
+        <span
+          key={index}
+          className="mr-2 inline-block rounded bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-800"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  </div>
+);
+
 export default function IndexClient() {
+  const dispatch = useAppDispatch();
+  const { items, loading } = useAppSelector(state => state.content);
+  const observer = useRef<IntersectionObserver | null>(null);
+  const pageRef = useRef(1);
+
+  const loadMoreItems = useCallback(async () => {
+    dispatch(setLoading(true));
+    try {
+      const pantipUrl = `https://pantip.com/`;
+      const scrapedContent = await scrapeAndStoreContent(pantipUrl);
+
+      if (scrapedContent && scrapedContent.length > 0) {
+        const formattedContent: Content[] = scrapedContent.map(item => ({
+          id: item.id || Date.now() + Math.random(),
+          title: item.title,
+          link: item.link,
+          author: item.author,
+          tags: item.tags,
+          updatedAt: item.updatedAt,
+        }));
+        dispatch(addItems(formattedContent));
+        pageRef.current += 1;
+      }
+    } catch (error) {
+      console.error('Failed to load more items:', error);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }, [dispatch]);
+
+  const lastElementRef = useCallback((node: HTMLDivElement | null) => {
+    if (loading) {
+      return;
+    }
+    if (observer.current) {
+      observer.current.disconnect();
+    }
+    observer.current = new IntersectionObserver((entries) => {
+      if (entries[0]?.isIntersecting) {
+        loadMoreItems();
+      }
+    });
+    if (node) {
+      observer.current.observe(node);
+    }
+  }, [loading, loadMoreItems]);
+
+  useEffect(() => {
+    if (items.length === 0) {
+      loadMoreItems();
+    }
+  }, [items.length, loadMoreItems]);
+
   return (
-    <>
-      <p>
-        {`Looking for a SaaS Boilerplate? `}
-        <a
-          className="text-blue-700 hover:border-b-2 hover:border-blue-700"
-          href="https://nextjs-boilerplate.com/pro-saas-starter-kit"
-        >
-          Next.js Boilerplate SaaS
-        </a>
-        {` can help you build one.`}
-      </p>
-      <p>
-        {`Follow `}
-        <a
-          className="text-blue-700 hover:border-b-2 hover:border-blue-700"
-          href="https://twitter.com/ixartz"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          @Ixartz on Twitter
-        </a>
-        {` for updates and more information about the boilerplate.`}
-      </p>
-      <p>
-        Our sponsors&apos; exceptional support has made this project possible.
-        Their services integrate seamlessly with the boilerplate, and we
-        recommend trying them out.
-      </p>
-      <h2 className="mt-5 text-2xl font-bold">
-        Boilerplate Code for Your Next.js Project with Tailwind CSS
-      </h2>
-      <p className="text-base">
-        <span role="img" aria-label="rocket">
-          🚀
-        </span>
-        {' '}
-        Next.js Boilerplate is a developer-friendly starter code for Next.js
-        projects, built with Tailwind CSS, and TypeScript.
-        {' '}
-        <span role="img" aria-label="zap">
-          ⚡️
-        </span>
-        {' '}
-        Made with developer experience first: Next.js, TypeScript, ESLint,
-        Prettier, Husky, Lint-Staged, Jest (replaced by Vitest), Testing
-        Library, Commitlint, VSCode, PostCSS, Tailwind CSS, Authentication with
-        {' '}
-        <a
-          className="text-blue-700 hover:border-b-2 hover:border-blue-700"
-          href="https://clerk.com?utm_source=github&amp;utm_medium=sponsorship&amp;utm_campaign=nextjs-boilerplate"
-        >
-          Clerk
-        </a>
-        , Database with DrizzleORM (PostgreSQL, SQLite, and MySQL), Error
-        Monitoring with
-        {' '}
-        <a
-          className="text-blue-700 hover:border-b-2 hover:border-blue-700"
-          href="https://sentry.io/for/nextjs/?utm_source=github&amp;utm_medium=paid-community&amp;utm_campaign=general-fy25q1-nextjs&amp;utm_content=github-banner-nextjsboilerplate-logo"
-        >
-          Sentry
-        </a>
-        , Logging with Pino.js and Log Management with
-        {' '}
-        <a
-          className="text-blue-700 hover:border-b-2 hover:border-blue-700"
-          href="https://betterstack.com/?utm_source=github&amp;utm_medium=sponsorship&amp;utm_campaign=next-js-boilerplate"
-        >
-          Better Stack
-        </a>
-        , Monitoring as Code with Checkly, Storybook, Multi-language (i18n), and
-        more.
-      </p>
-    </>
+    <div className="container mx-auto mt-10">
+      <h1 className="mb-4 text-2xl font-bold">Infinite Pantip Contents</h1>
+      {items.map((item, index) => (
+        <div key={item.id} ref={index === items.length - 1 ? lastElementRef : null}>
+          <ContentBlock content={item} />
+        </div>
+      ))}
+      {loading && <p className="text-center">Loading Contents...</p>}
+    </div>
   );
 }

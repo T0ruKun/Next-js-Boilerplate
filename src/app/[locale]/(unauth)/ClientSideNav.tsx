@@ -1,0 +1,123 @@
+'use client';
+
+import Link from 'next/link';
+
+import { useAppSelector } from '@/Store/hook';
+
+export default function ClientSideNav() {
+  const isSideNavVisible = useAppSelector(state => state.ui.isSideNavVisible);
+
+  return (
+    <div className={`fixed left-0 top-0 z-40 h-full w-64 bg-white shadow-md transition-all duration-300 ease-in-out ${isSideNavVisible ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className="mt-20">
+        <ul className="w-full space-y-2 shadow-md">
+          <li className="flex h-10">
+            <Link href="/" className="flex size-full justify-between rounded px-4 align-middle hover:bg-gray-100 active:bg-gray-100">
+              <span className="my-auto">หน้าแรก</span>
+            </Link>
+          </li>
+          <li className="flex h-10">
+            <Link href="/" className="flex size-full justify-between rounded px-4 align-middle hover:bg-gray-100 active:bg-gray-100">
+              <span className="my-auto">My Feed</span>
+            </Link>
+          </li>
+          <li className="flex h-10">
+            <Link href="/" className="flex size-full justify-between rounded px-4 align-middle hover:bg-gray-100 active:bg-gray-100">
+              <span className="my-auto">Pantip Pick</span>
+            </Link>
+          </li>
+          <li className="flex h-10">
+            <Link href="/" className="flex size-full justify-between rounded px-4 align-middle hover:bg-gray-100 active:bg-gray-100">
+              <span className="my-auto">Pantip Hitz</span>
+            </Link>
+          </li>
+          <li className="flex h-10">
+            <Link href="/" className="flex size-full justify-between rounded px-4 align-middle hover:bg-gray-100 active:bg-gray-100">
+              <span className="my-auto">Explore</span>
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="mt-5">
+        <ul className="w-full space-y-2 shadow-md">
+          <li className="flex h-10">
+            <Link href="/" className="flex size-full justify-between rounded px-4 align-middle hover:bg-gray-100 active:bg-gray-100">
+              <span className="my-auto">แลกพอยต์</span>
+            </Link>
+          </li>
+          <li className="flex h-10">
+            <Link href="/" className="flex size-full justify-between rounded px-4 align-middle hover:bg-gray-100 active:bg-gray-100">
+              <span className="my-auto">กิจกรรมพันทิป</span>
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="mt-5">
+        <ul className="w-full space-y-2 shadow-md">
+          <li className="flex flex-col">
+            <a href="/" className="flex size-full px-4 hover:underline ">
+              <span className="my-auto">กฎ กติกาและมารยาท</span>
+            </a>
+          </li>
+          <li className="flex flex-col">
+            <a href="/" className="flex px-4 hover:underline">
+              <span className="my-auto">คำแนะนำการโพสต์</span>
+            </a>
+          </li>
+          <li className="flex flex-col">
+            <a href="/" className="flex px-4 hover:underline">
+              <span className="my-auto">นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</span>
+            </a>
+          </li>
+          <li className="flex flex-col">
+            <a href="/" className="flex px-4 hover:underline">
+              <span className="my-auto">สิทธิ์การใช้งานของสมาชิก</span>
+            </a>
+          </li>
+          <li className="flex flex-col">
+            <a href="/" className="flex px-4 hover:underline">
+              <span className="my-auto">ติดต่อทีมงาน Pantip</span>
+            </a>
+          </li>
+          <li className="flex flex-col">
+            <a href="/" className="flex px-4 hover:underline">
+              <span className="my-auto">ติดต่อลงโฆษณา</span>
+            </a>
+          </li>
+          <li className="flex flex-col">
+            <a href="/" className="flex px-4 hover:underline">
+              <span className="my-auto">ร่วมงานกับ Pantip</span>
+            </a>
+          </li>
+          <li className="flex flex-col">
+            <a href="/" className="flex px-4 hover:underline">
+              <span className="my-auto">Download App Pantip</span>
+            </a>
+          </li>
+          <li className="flex flex-col">
+            <a href="/" className="flex px-4 hover:underline">
+              <span className="my-auto">Pantip Certified Developer</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div className="absolute bottom-0 left-0 hidden w-full border-t-2 md:inline-grid">
+        <div className="h-10 w-full text-nowrap p-3 text-sm">
+          <span>© 2024 Internet Marketing co., ltd</span>
+        </div>
+        <div className="flex bg-white py-4 shadow-md">
+          <span className="my-auto px-4">ติดตาม</span>
+          <ul className="flex flex-row items-center">
+            <li className="my-auto flex flex-row space-x-2">
+              <div className="size-6 bg-black"></div>
+              <div className="size-6 bg-black"></div>
+              <div className="size-6 bg-black"></div>
+              <div className="size-6 bg-black"></div>
+              <div className="size-6 bg-black"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}

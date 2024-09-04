@@ -7,8 +7,8 @@ import { addItems, setLoading } from '@/Store/contentSlice';
 import { useAppDispatch, useAppSelector } from '@/Store/hook';
 
 const ContentBlock = ({ content }: { content: Content }) => (
-  <div className="m-2 rounded bg-gray-100 p-4">
-    <h2 className="text-wrap text-sm font-bold md:text-lg">{content.title}</h2>
+  <div className="mx-2 w-full rounded bg-gray-100 p-4">
+    <h2 className="break-words text-xs font-bold sm:text-sm md:text-lg">{content.title}</h2>
     <a href={content.link} className="text-wrap text-sm text-blue-500 underline md:text-lg">
       {content.link}
     </a>

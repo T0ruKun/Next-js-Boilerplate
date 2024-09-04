@@ -1,6 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import { AiFillTikTok } from 'react-icons/ai';
+import { FaFacebookSquare, FaInstagramSquare, FaTwitterSquare } from 'react-icons/fa';
+import { FaSquareYoutube } from 'react-icons/fa6';
 
 import { useAppSelector } from '@/Store/hook';
 
@@ -9,8 +12,8 @@ export default function ClientSideNav() {
 
   return (
     <div className={`fixed left-0 top-0 z-40 h-full w-64 bg-white shadow-md transition-all duration-300 ease-in-out ${isSideNavVisible ? 'translate-x-0' : '-translate-x-full'}`}>
-      <div className="mt-20">
-        <ul className="w-full space-y-2 shadow-md">
+      <div className="mt-14">
+        <ul className="w-full space-y-2 border-b">
           <li className="flex h-10">
             <Link href="/" className="flex size-full justify-between rounded px-4 align-middle hover:bg-gray-100 active:bg-gray-100">
               <span className="my-auto">หน้าแรก</span>
@@ -39,7 +42,7 @@ export default function ClientSideNav() {
         </ul>
       </div>
       <div className="mt-5">
-        <ul className="w-full space-y-2 shadow-md">
+        <ul className="w-full space-y-2 border-b">
           <li className="flex h-10">
             <Link href="/" className="flex size-full justify-between rounded px-4 align-middle hover:bg-gray-100 active:bg-gray-100">
               <span className="my-auto">แลกพอยต์</span>
@@ -53,7 +56,7 @@ export default function ClientSideNav() {
         </ul>
       </div>
       <div className="mt-5">
-        <ul className="w-full space-y-2 shadow-md">
+        <ul className="w-full space-y-2 border-b">
           <li className="flex flex-col">
             <Link href="/" className="flex size-full px-4 hover:underline ">
               <span className="my-auto">กฎ กติกาและมารยาท</span>
@@ -101,19 +104,19 @@ export default function ClientSideNav() {
           </li>
         </ul>
       </div>
-      <div className="absolute bottom-0 left-0 hidden w-full border-t-2 md:inline-grid">
+      <div className="absolute bottom-0 left-0 hidden w-full border-t md:inline-grid">
         <div className="h-10 w-full text-nowrap p-3 text-sm">
           <span>© 2024 Internet Marketing co., ltd</span>
         </div>
-        <div className="flex bg-white py-4 shadow-md">
+        <div className="flex border-t py-4 shadow-md">
           <span className="my-auto px-4">ติดตาม</span>
           <ul className="flex flex-row items-center">
             <li className="my-auto flex flex-row space-x-2">
-              <div className="size-6 bg-black"></div>
-              <div className="size-6 bg-black"></div>
-              <div className="size-6 bg-black"></div>
-              <div className="size-6 bg-black"></div>
-              <div className="size-6 bg-black"></div>
+              <FaFacebookSquare className="my-auto size-6 cursor-pointer" />
+              <FaTwitterSquare className="my-auto size-6 cursor-pointer" />
+              <FaSquareYoutube className="my-auto size-6 cursor-pointer" />
+              <FaInstagramSquare className="my-auto size-6 cursor-pointer" />
+              <AiFillTikTok className="my-auto size-7 cursor-pointer" />
             </li>
           </ul>
         </div>

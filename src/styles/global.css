@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bnb_color: #ff385c;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.bnb {
+  color: var(--bnb_color);
+}
+
+.bg_pantip {
+  background-repeat: no-repeat;
+  height: 20vw;
+  max-height: 300px;
+  background-position: center;
+  background-size: contain;
+  background-image: url(https://ptcdn.info/doodle/2024/5d07273900d01f33da0f618c_cl018k3w7c.png);
+}
+
+.bg_bnb {
+  background-color: var(--bnb_color);
+}
+
 /* ----------- iPad 1, 2, Mini and Air ----------- */
 /* Portrait */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {

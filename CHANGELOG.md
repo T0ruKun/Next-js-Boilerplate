@@ -1,3 +1,15 @@
+# [3.56.0](https://github.com/T0ruKun/Next-js-Boilerplate/compare/v3.55.3...v3.56.0) (2024-09-04)
+
+
+### Features
+
+* adjust client content ([e06f53c](https://github.com/T0ruKun/Next-js-Boilerplate/commit/e06f53cc731bd3e9bc63d38ca584630d88abe872))
+* adjust navigation bar ([dcf657e](https://github.com/T0ruKun/Next-js-Boilerplate/commit/dcf657e2c7512ab721d681f02ae998fe45997083))
+* fix cors error in production ([256e7da](https://github.com/T0ruKun/Next-js-Boilerplate/commit/256e7da00ec1b873c73f58b0ad9728788f66d663))
+* improve styling ([9e0d7e7](https://github.com/T0ruKun/Next-js-Boilerplate/commit/9e0d7e7dbab2222b95be6f2f6ccfbabaa096eec6))
+* scraping pantip.com ([c01da8d](https://github.com/T0ruKun/Next-js-Boilerplate/commit/c01da8d73c0b34e09fcadcc728d5b2a3a2cfe659))
+* update layout for home page ([56ab3f5](https://github.com/T0ruKun/Next-js-Boilerplate/commit/56ab3f5a94c2f3926af2c82f5e0afa7804da1a81))
+
 ## [3.55.3](https://github.com/ixartz/Next-js-Boilerplate/compare/v3.55.2...v3.55.3) (2024-08-21)
 
 

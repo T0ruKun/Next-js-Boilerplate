@@ -84,13 +84,18 @@ export default function IndexClient() {
 
   return (
     <div className="container mx-auto mt-10">
-      <h1 className="mb-4 text-2xl font-bold">Infinite Pantip Contents</h1>
+      <h1 className="mb-4 text-2xl font-bold">Pantip Contents</h1>
       {items.map((item, index) => (
-        <div key={item.id || index} ref={index === items.length - 1 ? lastElementRef : null}>
+        <div
+          key={item.id || index}
+          ref={index === items.length - 1 ? lastElementRef : null}
+          className="mb-4" // Adds bottom margin to each ContentBlock
+        >
           <ContentBlock content={item} />
         </div>
       ))}
       {loading && <p className="text-center">Loading Contents...</p>}
     </div>
+
   );
 }
